@@ -1,12 +1,13 @@
-@extends('layouts.plantillabase')
+@extends('adminlte::page')
 
-@section('estiloCss')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css
-    ">
-@endsection
+@section('title', 'Sistema De Articulo')
 
-@section('encabezado')
-    
+@section('content_header')
+    <h1>Sistema De Articulo </h1>
+@stop
+
+@section('content')
+   
 <a href="articulo/create " class="btn btn-primary mb-3" >CREAR</a>
 
 
@@ -31,12 +32,12 @@
             <td>{{$articulo->precio}}</td>
             {{-- Botones De Edicion --}}
             <td>
-                <a href="/articulo/{{$articulo->id}}/edit" class="btn btn-info">Editar</a>
+                <a href="/articulo/{{$articulo->id}}/edit" class="btn btn-info mb-2">Editar</a>
                 {{-- Borrar --}}
                 <form action="/articulo/{{$articulo->id}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button  class="btn btn-danger" type="submit" 
+                <button  class="btn btn-danger mb-2" type="submit" 
                 onclick="return confirm('Confirmar');">Borrar</button>
                 </form>
             </td>
@@ -47,20 +48,27 @@
     </tbody>
 </table>
 
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css
+    ">
+
+@stop
+
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-        $('#articulos').DataTable(
-            {
-                "lengthMenu":[[5,10,50.-1],[5,10,50,'all']]
-            }
-        );
-        } );
-    </script>
-@endsection
-
-@endsection
+<script>
+    $(document).ready(function() {
+    $('#articulos').DataTable(
+        {
+            "lengthMenu":[[5,10,50.-1],[5,10,50,'all']]
+        }
+    );
+    } );
+</script>
+@stop
