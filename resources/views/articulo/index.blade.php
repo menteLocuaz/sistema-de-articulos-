@@ -1,12 +1,17 @@
 @extends('layouts.plantillabase')
 
+@section('estiloCss')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css
+    ">
+@endsection
+
 @section('encabezado')
     
-<a href="articulo/create " class="btn btn-primary">CREAR</a>
+<a href="articulo/create " class="btn btn-primary mb-3" >CREAR</a>
 
 
-<table class="table table-dark table-striped mt-4">
-    <thead>
+<table id='articulos' class="table table-dark table-striped mt-4 table-bordered shadow-lg" style="width:100%">
+    <thead class="bg-primary text-white">
         <tr>
             <th class=" col">ID</th>
             <th class=" col">Codigo</th>
@@ -41,4 +46,21 @@
         @endforeach
     </tbody>
 </table>
+
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+        $('#articulos').DataTable(
+            {
+                "lengthMenu":[[5,10,50.-1],[5,10,50,'all']]
+            }
+        );
+        } );
+    </script>
+@endsection
+
 @endsection
